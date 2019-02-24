@@ -20,8 +20,10 @@ public class UserController {
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
     public User getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
-        //return userRepository.findByEmail(userPrincipal.getEmail())
-        //        .orElseThrow(() -> new ResourceNotFoundException("User", "email", userPrincipal.getEmail()));
-    	return null;
+        User user= userRepository.findByEmail(userPrincipal.getEmail());
+        if(user ==null) {
+        	new ResourceNotFoundException("User", "email", userPrincipal.getEmail());
+        }
+        return user;
     }
 }

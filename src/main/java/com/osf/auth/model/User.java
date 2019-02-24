@@ -4,14 +4,16 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 
 /**
  * The persistent class for the CUSTOMER database table.
  * 
  */
-@Entity
+@Entity(name="customer")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -244,6 +246,17 @@ public class User implements Serializable {
 
 	public void setProvider(AuthProvider provider) {
 		this.provider = provider;
+	}
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "role_customer", joinColumns = {
+			@JoinColumn(name = "customer_id", referencedColumnName = "customer_id") }, inverseJoinColumns = {
+					@JoinColumn(name = "role_id", referencedColumnName = "id") })
+	private List<Role> roles;
+	
+
+	public List<Role> getRoles() {
+		return roles;
 	}
 
 }

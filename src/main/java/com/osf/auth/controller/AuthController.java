@@ -72,7 +72,7 @@ public class AuthController {
         user.setProvider(AuthProvider.local);
         //user.setProviderId(AuthProvider.local.name());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
+        user.setRole("1");
         User result = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
