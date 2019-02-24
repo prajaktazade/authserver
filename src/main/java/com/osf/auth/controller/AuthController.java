@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -57,9 +58,11 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-       // if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-       //     throw new BadRequestException("Email address already in use.");
-       // }
+    	
+       User userExist = userRepository.findByEmail(signUpRequest.getEmail());
+       if(userExist != null && !StringUtils.isEmpty(userExist.getEmail())) {
+            throw new BadRequestException("Email address already in use.");
+       }
 
         // Creating user's account
         User user = new User();
