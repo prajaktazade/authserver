@@ -6,16 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * 
- * <h2>Permission</h2>
- * 
- * @author Kristijan Georgiev
- * 
- *         Permission entity
- *
- */
-
 
 @Entity
 public class Permission extends BaseIdEntity {

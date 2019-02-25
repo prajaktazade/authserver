@@ -30,10 +30,10 @@ public class UserPrincipal implements OAuth2User, UserDetails {
     }
 
     public static UserPrincipal create(User user) {
-        //List<GrantedAuthority> authorities = Collections.
-        //        singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+        List<GrantedAuthority> authorities = Collections.
+                singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 
-        List<Role> roles = user.getRoles();
+/*        List<Role> roles = user.getRoles();
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 
 		roles.forEach(r -> {
@@ -41,9 +41,9 @@ public class UserPrincipal implements OAuth2User, UserDetails {
 			r.getPermissions().forEach(p -> {
 				authorities.add(new SimpleGrantedAuthority(p.getName()));
 			});
-		});
+		});*/
         return new UserPrincipal(
-                user.getCustomerId(),
+                user.getId(),
                 user.getEmail(),
                 user.getPassword(),
                 authorities

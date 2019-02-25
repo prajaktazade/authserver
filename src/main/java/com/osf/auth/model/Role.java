@@ -12,17 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-/**
- * 
- * <h2>Role</h2>
- * 
- * @author Kristijan Georgiev
- * 
- *         Role entity
- *
- */
-
-
 @Entity
 public class Role extends BaseIdEntity {
 

@@ -7,11 +7,10 @@ spring:
     jpa:
         show-sql: true
         hibernate:
-            ddl-auto: update
-            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+            ddl-auto: create-drop
         properties:
             hibernate:
-                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+                dialect: org.hibernate.dialect.MySQL5Dialect
     security:
       oauth2:
         client:

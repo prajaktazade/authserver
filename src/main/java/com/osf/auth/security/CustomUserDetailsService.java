@@ -12,9 +12,6 @@ import com.osf.auth.exception.ResourceNotFoundException;
 import com.osf.auth.model.User;
 import com.osf.auth.repository.UserRepository;
 
-/**
- * Created by rajeevkumarsingh on 02/08/17.
- */
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

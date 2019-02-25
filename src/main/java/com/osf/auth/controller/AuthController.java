@@ -18,11 +18,13 @@ import com.osf.auth.payload.ApiResponse;
 import com.osf.auth.payload.AuthResponse;
 import com.osf.auth.payload.LoginRequest;
 import com.osf.auth.payload.SignUpRequest;
+import com.osf.auth.repository.RoleRepository;
 import com.osf.auth.repository.UserRepository;
 import com.osf.auth.security.TokenProvider;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/auth")
@@ -33,6 +35,9 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -69,10 +74,10 @@ public class AuthController {
         user.setFirstName(signUpRequest.getName());
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(signUpRequest.getPassword());
-        user.setProvider(AuthProvider.local);
+        user.setProvider(AuthProvider.local.toString());
         //user.setProviderId(AuthProvider.local.name());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("1");
+        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
         User result = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
