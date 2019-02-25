@@ -26,3 +26,10 @@ curl -X POST \
 "email":"admin2@admin.com",
 "password":"password"
 }'
+
+
+Third party login : 
+
+The OAuth2 login  initiated by the frontend client by sending the user to the endpoint http://localhost:8080/oauth2/authorize/{provider}?redirect_uri=<redirect_uri_after_login>.
+
+The provider path parameter is one of 'google', 'facebook', or 'github'. The redirect_uri_after_login is the URI to which the user will be redirected once the authentication with the OAuth2 provider is successful. provide relay or homepage url here
